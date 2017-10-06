@@ -1,2 +1,15 @@
-/**/
+.start_title{
+    position: absolute;
+    width: 90%;
+    margin-left: auto; margin-right: auto;
+    margin-top:5%
+}
 
+.start_button{
+    position: absolute;
+    bottom: 0;
+    margin-right: auto;
+    margin-left:auto;
+    margin-bottom:5%
+    /* margin:0 auto; */
+}
