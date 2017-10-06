@@ -10,6 +10,7 @@
 
 .start_title_content{
     object-fit: contain;
+    width: 90%;
 }
 
 .start_button{
