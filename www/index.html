@@ -6,21 +6,23 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
   <script src="components/loader.js"></script>
   <script src="lib/onsenui/js/onsenui.min.js"></script>
-
+  <script src="js/jquery-3.2.1.min.js"></script>
+  
+  <!-- 共通js：app.js, 専用js：index.js -->
+  <script src="js/app.js"></script>
+  <script src="js/index.js"></script>
+  
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/style.css">
-
-  </script>
 </head>
-<body>
+<body class="fadeout">
     <div>
         <div class="start_title">
             <img src="images/rogo1.png" class="start_title_content"/>
         </div>
-        <div class="start_button">
-            <a href="#Input" class="button">スタート！</a>               
+        <div class="start_button" id="start_button">
         </div>
     </div>
 </body>
