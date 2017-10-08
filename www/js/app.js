@@ -5,24 +5,10 @@ function tagChange(id,tag){
     document.getElementById(id).innerHTML = tag;
 } 
 
-//////// エフェクト対応
+//////// エフェクト対応(jquery)
 $(window).on('load', function(){
     $('body').removeClass('fadeout');
 });
-
-// 起動時読み込み(window.onload)
-// window.onload = function(){
-//     document.getElementsByTagName('body').className = '';
-// } 
-
-// function pageEffect(nextHref){
-//     if(nextHref !== ''){
-//         document.getElementsByTagName('body').className = 'fadeout';
-//         setTimeout(function(){
-//             window.location = url;  // 0.8秒後に取得したURLに遷移
-//         }, 800);
-//     }
-// }
 
 $(function() {
 // ハッシュリンク(#)と別ウィンドウでページを開く場合はスルー
@@ -38,3 +24,12 @@ $(function() {
         return false;
     });
 });
+
+function pageEffect(nextHref){
+    if(nextHref !== ''){
+        document.getElementsByTagName('body').className = 'fadeout';
+        setTimeout(function(){
+            window.location = url;  // 0.8秒後に取得したURLに遷移
+        }, 800);
+    }
+}

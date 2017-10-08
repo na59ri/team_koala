@@ -2,7 +2,9 @@
 // 初回起動フラグ
 var initialize = true;
 var twitterButton = '<a class="button" onclick="register()">twitterへ登録</a>';
-var startButton = '<a href="index.1.html" class="button" onClick="nextclick()">スタート！</a>';
+// ONSENUI のボタンを利用
+// https://ja.onsen.io/v2/api/css.html#button-category
+var startButton = '<a class="button" onClick="nextclick()">スタート！</a>';
 var changeId = "start_button";
 
 // 起動時読み込み(window.onload)
@@ -18,11 +20,16 @@ function initialAccess(){
 
 // twitterボタン選択
 function register(){
+    // 初回起動フラグをOFF
     initialize = false;
+    // ぼたん変更
     tagChange(changeId,startButton);
 }
 
-// ボタン選択時
+// 「スタート！」ボタン選択時
 function nextclick(){
-    location.href = "index.1.html";
+    // 遷移先URL
+    location.href = "input.html";
+    // 画面遷移エフェクト（app.js）
+    pageEffect(nextHref);
 }

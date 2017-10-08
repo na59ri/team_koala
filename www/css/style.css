@@ -23,6 +23,7 @@ body.fadeout article{
     transform:scale(1.2);
 }
 
+/* スタート画面：タイトル */
 .start_title{
     position: absolute;
     padding-left: 5%;
@@ -34,11 +35,61 @@ body.fadeout article{
 
 }
 
+/* スタート画面：イメージ */
 .start_title_content{
     object-fit: cover;
+    display: inline;
 }
 
+/* スタート画面：ボタン */
 .start_button{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-bottom:5%;
+}
+
+.input_title{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    left: 50%;
+    text-align: center;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top:4%;
+    color: #aaaaaa
+}
+
+.input_image{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top:4%;
+}
+
+.input_body{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top:2%;
+    text-align: center;
+}
+
+.input_body_title{
+    text-align: center;
+    color: #aaaaaa
+}
+
+.input_button{
     position: absolute;
     bottom: 0;
     left: 50%;
