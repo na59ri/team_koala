@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="components/monaca-jquery/jquery.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  
+  <!-- 共通js：app.js, 専用js：index.js -->
+  <script src="js/app.js"></script>
+  <script src="js/camera.js"></script>
+  
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="fadeout">
+    <div>
+        <input type="button" onclick="snapPicture()" value="Take Pictures"><br><br>
+        <img id="picture" src="" width="150" height="150">
+    </div>
+</body>
+</html>
