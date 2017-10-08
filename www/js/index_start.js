@@ -7,12 +7,13 @@ var twitterButton = '<a class="button" onclick="register()">twitterへ登録</a>
 var startButton = '<a class="button" onClick="nextclick()">スタート！</a>';
 var changeId = 'start_button';
 
-var nextHref = 'input.html';
+var nextHref = 'story.html';
 
 // 起動時読み込み(window.onload)
 window.onload = function(){
     initialAccess();
-    tagChange(changeId,twitterButton);
+    // tagChange(changeId,twitterButton);
+    tagChange(changeId,startButton);
 } 
 
 // 初回アクセス
@@ -25,8 +26,7 @@ function register(){
     // 初回起動フラグをOFF
     initialize = false;
     // ぼたん変更
-    // tagChange(changeId,startButton);
-    nextclick();
+    tagChange(changeId,startButton);
 }
 
 // 「スタート！」ボタン選択時

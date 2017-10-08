@@ -18,18 +18,18 @@ window.onload = function(){
 
 // 事前入力情報の取得
 function getCloudData(){
-
     // ダミーデータ
     if(0<interviewData.length){
+
         var item = interviewData[0];
         image = item.image;
-        questionid = item.questionid;
+        questionid = Number(item.questionid);
         question = item.question;
         anslist = item.anslist;
         
         changeImage(imageId,image);
-        window.setTimeout(changeQuestion(questionId,question), 2000);
-        window.setTimeout(changeAnslist(ansListId,anslist), 2500);
+        changeQuestion(questionId,question);
+        changeAnslist(ansListId,anslist);
     }
 }
 
@@ -38,7 +38,29 @@ function nextClick(object){
     // 選択時の回答番号を取得
     var value = object.getAttribute('value');
 
-    window.alert(value);
+    if(questionid < interviewData.length){
+
+        // エフェクト
+        pageEffect(questionid);
+    } else {
+        // 遷移先URL
+        location.href = nextHref;
+        // 画面遷移エフェクト（app.js）
+        pageEffect(nextHref);
+    }
+}
+
+// 同一ファイル内エフェクト(未実装)
+function pageEffect(id){
+    var item = interviewData[id];
+    image = item.image;
+    questionid = Number(item.questionid);
+    question = item.question;
+    anslist = item.anslist;
+    
+    changeImage(imageId,image);
+    changeQuestion(questionId,question);
+    changeAnslist(ansListId,anslist);
 }
 
 // 画像置き換え

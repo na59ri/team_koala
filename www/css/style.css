@@ -64,21 +64,47 @@ body.fadeout article{
     color: #aaaaaa
 }
 
+.input_image{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top:4%;
+}
+
+.input_body{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top:2%;
+    text-align: center;
+}
+
+.input_body_title{
+    text-align: center;
+    color: #aaaaaa
+}
+
+.input_button{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-bottom:5%;
+}
+
 /* インタビュー画面：写真 */
 .background_image{
     position: absolute;
     object-fit: cover;
     width: 100%;
     height: 100%;    
-}
-
-.background_image_layer{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    background-color: rgba(255,255,255,.25)
-
 }
 
 /* インタビュー画面：性別〜年齢 */
@@ -106,4 +132,3 @@ body.fadeout article{
     margin-bottom:5%;
     background-color: rgba(255,255,255,.50);
 }
-
