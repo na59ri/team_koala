@@ -8,7 +8,7 @@
 
 /*** <Start:monaca-cordova-loader> ***/
 /*** <Start:monaca-cordova-loader LoadJs:"components/monaca-cordova-loader/cordova-loader.js"> ***/
-(function(){
+(function(){ 
   function getDeviceObjectForPreview() {
     var raw_values = window.location.search.substring(1).split('&');
     var values = {};
