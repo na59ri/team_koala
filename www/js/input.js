@@ -4,6 +4,8 @@ var ageId = "login_age";
 var startAge= 18;
 var endAge= 70;
 
+var nextHref = 'interview.html';
+
 // 起動時読み込み(window.onload)
 window.onload = function(){
 
@@ -24,12 +26,10 @@ function getInitialInput(){
     
 }
 
-
-
-// twitterボタン選択
-function register(){
-}
-
 // ボタン選択時
 function nextclick(){
+    // 遷移先URL
+    location.href = nextHref;
+    // 画面遷移エフェクト（app.js）
+    pageEffect(nextHref);
 }

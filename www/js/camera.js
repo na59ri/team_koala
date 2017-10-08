@@ -1,25 +1,87 @@
-// parameter設定
+var imageUrl;
 
-document.addEventListener ("deviceready", onDeviceReady, false);
-
-//This function is executed when Cordova loading completed.
-function onDeviceReady () {
-    window.alert ('Loading Cordova is completed、Camera is now ready to be used.');
+//画像撮影
+function snapPicture() {
+    window.alert("check");
+    takingPicture = true;
+    navigator.camera.getPicture(onSuccess, onFail, {
+        quality: 50,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        correctOrientation: true,
+        destinationType: Camera.DestinationType.DATA_URL
+    });
 }
 
-function snapPicture () {
-    navigator.camera.getPicture (onSuccess, onFail, 
-        { quality: 50, destinationType: Camera.DestinationType.DATA_URL});
+//A callback function when snapping picture is success.
+function onSuccess(imageData) {
+    setLoading(true);
 
+    imageUrl = imageData;
 
-    //A callback function when snapping picture is success.
-    function onSuccess (imageData) {
-        var image = document.getElementById ('picture');
-        image.src = "data:image/jpeg;base64," + imageData;
+    var image = $("#picture");
+    image.show();
+    image.attr("src", "data:image/jpeg;base64," + imageData);
+}
+
+//A callback function when snapping picture is fail.
+function onFail(message) {
+    $("#picture").hide();
+    takingPicture = false;
+    setLoading(false);
+    alertMessage("写真を撮影してください。");
+}
+
+//画像保存処理
+function savePictureData() {
+    console.log("savePictureData");
+    if (imageUrl) {
+        var d = new Date();
+        //登録情報生成
+        var body = dataURItoBlob(imageUrl, "image/jpeg");
+        var basename =
+            d.getFullYear() + "-" +
+            ('0' + (d.getMonth() + 1)).slice(-2) + "-" +
+            ('0' + d.getDate()).slice(-2) + "_" +
+            ('0' + d.getHours()).slice(-2) + "-" +
+            ('0' + d.getMinutes()).slice(-2) + "-" +
+            ('0' + d.getSeconds()).slice(-2);
+        //保存実行
+        saveToLocal(body, basename, function() {
+            infoMessage("画像の登録が完了しました。");
+            refleshFileList();
+        }, function() {
+            alertMessage("画像の登録に失敗しました。");
+        });
+    } else {
+        $("#picture").hide();
+        alertMessage("画像を撮影してください。");
     }
+}
 
-    //A callback function when snapping picture is fail.
-    function onFail (message) {
-        alert ('Error occured: ' + message);
+function dataURItoBlob(url, type) {
+    var binary = atob(url);
+    var array = [];
+    for (var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
     }
+    return new Blob([new Uint8Array(array)], { type: type });
+};
+
+function saveToLocal(body, basename, onSuccess, onError) {
+    console.log(body);
+    getFileSystem(
+        function(fileEntry) {
+            fileEntry.getFile(
+                basename + ".jpg", { create: true }, onFileEntry, onError
+            );
+
+            function onFileEntry(fileEntry) {
+                fileEntry.createWriter(function(fileWriter) {
+                    fileWriter.onwriteend = onSuccess;
+                    fileWriter.onerror = onError;
+                    fileWriter.write(body);
+                }, onError);
+            };
+        }
+    );
 }

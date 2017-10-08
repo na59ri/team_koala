@@ -1,0 +1,93 @@
+// parameter設定
+var interviewData = [{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'1',
+    "question":"質問です１",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'2',
+    "question":"質問です２",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'3',
+    "question":"質問です３",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'4',
+    "question":"質問です４",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'5',
+    "question":"質問です５",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'6',
+    "question":"質問です６",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'7',
+    "question":"質問です７",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'8',
+    "question":"質問です８",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'9',
+    "question":"質問です９",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},{
+    "image":"http://onlineschoolmanagementsoftware.com/wp-content/uploads/2013/10/4-15.jpg",
+    "questionid":'10',
+    "question":"質問です１０",
+    "anslist":[
+        {"ansid":'1',"ans":"あああ"},
+        {"ansid":'2',"ans":"いいい"},
+        {"ansid":'3',"ans":"ううう"}
+    ]
+},
+];

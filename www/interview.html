@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="components/monaca-jquery/jquery.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  
+  <!-- 共通js：app.js, 専用js：interview.js -->
+  <script src="js/app.js"></script>
+  <script src="js/interview_data.js"></script>
+  <script src="js/interview.js"></script>
+  
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="fadeout">
+    <div>
+        <img class="background_image" id="background_image">
+        <!-- <div class="background_image_layer"> -->
+        <div>
+            <ul class="list ans_list" id="ans_list"></ul>
+        </div>
+        <div class="question" id="question"></div>
+    </div>
+</body>
+</html>
