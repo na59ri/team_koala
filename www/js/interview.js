@@ -39,7 +39,6 @@ function nextClick(object){
     var value = object.getAttribute('value');
 
     if(questionid < interviewData.length){
-
         // エフェクト
         pageEffect(questionid);
     } else {

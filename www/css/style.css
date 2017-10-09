@@ -132,3 +132,39 @@ body.fadeout article{
     margin-bottom:5%;
     background-color: rgba(255,255,255,.50);
 }
+
+/* 評価画面：タイトル */
+.eva_type{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    left: 50%;
+    text-align: center;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top:4%;
+    color: #aaaaaa
+}
+
+/* 評価画面：イメージ */
+.eva_advice{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    left: 50%;
+    text-align: center;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top:4%;
+    color: #aaaaaa
+}
+
+/* 評価画面：ボタン */
+.eva_button{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-bottom:5%;
+}
