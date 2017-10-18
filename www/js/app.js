@@ -93,8 +93,8 @@ var requestHeader ={
 };
 var request = new XMLHttpRequest();
 var data = '?app=22&id=26';
-// var url = 'https://401wo.cybozu.com/k/v1/record.json'+data;
-var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json'+data;
+var url = 'https://401wo.cybozu.com/k/v1/record.json'+data;
+// var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json'+data;
 // function login_request(){
     
 //     authorization = base64encode(loginName+':'+loginPass);
