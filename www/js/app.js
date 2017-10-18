@@ -33,3 +33,66 @@ function pageEffect(nextHref){
         }, 800);
     }
 }
+
+
+var loginName = '';
+var loginPass = '';
+var authorization = '';
+var requestHeader ={
+    url: "https://401wo.cybozu.com/k/guest/1/v1/record.json",
+    method: "GET",
+    headers: {
+      "X-Cybozu-Authorization": authorization,
+      "Content-Type": "application/json"
+    },
+    params: {
+      "app": 22
+    }
+};
+var request = new XMLHttpRequest();
+var data = '?app=22&id=26';
+// var url = 'https://401wo.cybozu.com/k/v1/record.json'+data;
+var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json'+data;
+// function login_request(){
+    
+//     authorization = base64encode(loginName+':'+loginPass);
+    
+//     request.open('GET', url);
+//     request.onreadystatechange = function(){
+//         if(request.readyState == 4){
+//             if(request.status == 200){
+//                 alert("Successfully logged in");                
+//             }else{
+//                 // alert("Login name or password is incorrect.");                
+//                 alert('response:'+request.status);
+//             }
+//         }
+//     }
+//     request.setRequestHeader('Host','401wo.cybozu.com:443');
+//     request.setRequestHeader('X-Cybozu-Authorization',authorization);
+//     request.setRequestHeader('Authorization','Basic '+authorization);
+//     request.setRequestHeader('Content-Type','application/json');
+//     request.send(data);
+// }
+function login_request(){
+    authorization = base64encode(loginName+':'+loginPass);
+    request.open('GET', url);
+    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    request.onreadystatechange = function() {
+        if(request.readyState == 4){
+            alert('response:'+request.status);
+            if (request.status == 200) {
+                // success
+                alert(JSON.parse(request.responseText));
+            } else {
+                // error
+                alert(JSON.parse(request.responseText));
+            }
+        }
+    };
+    // request.setRequestHeader('Host','401wo.cybozu.com:443');
+    // request.setRequestHeader('X-Cybozu-Authorization',authorization);
+    // request.setRequestHeader('Authorization','Basic '+authorization);
+    // request.setRequestHeader('Content-Type','application/json');
+    request.send();
+}

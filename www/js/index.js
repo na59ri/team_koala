@@ -17,7 +17,7 @@ window.onload = function(){
 
 // 初回アクセス
 function initialAccess(){
-    
+    login_request();
 }
 
 // twitterボタン選択
