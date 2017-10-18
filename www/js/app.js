@@ -120,18 +120,27 @@ function login_request(){
     authorization = base64encode(loginName+':'+loginPass);
     request.open('GET', url);
     request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    request.onreadystatechange = function() {
-        if(request.readyState == 4){
-            alert('response:'+request.status);
-            if (request.status == 200) {
-                // success
-                alert(JSON.parse(request.responseText));
-            } else {
-                // error
-                alert(JSON.parse(request.responseText));
-            }
+    request.onload = function() {
+        if (request.status === 200) {
+            // success
+            console.log(JSON.parse(request.responseText));
+        } else {
+            // error
+            console.log(JSON.parse(request.responseText));
         }
     };
+    // request.onreadystatechange = function() {
+    //     if(request.readyState == 4){
+    //         alert('response:'+request.status);
+    //         if (request.status == 200) {
+    //             // success
+    //             alert(JSON.parse(request.responseText));
+    //         } else {
+    //             // error
+    //             alert(JSON.parse(request.responseText));
+    //         }
+    //     }
+    // };
     // request.setRequestHeader('Host','401wo.cybozu.com:443');
     // request.setRequestHeader('X-Cybozu-Authorization',authorization);
     // request.setRequestHeader('Authorization','Basic '+authorization);
