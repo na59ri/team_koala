@@ -9,6 +9,9 @@ var changeId = 'start_button';
 
 var nextHref = 'input.html';
 
+var data = '?app=22&id=44';
+var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json'+data;
+
 // 起動時読み込み(window.onload)
 window.onload = function(){
     initialAccess();
@@ -17,7 +20,8 @@ window.onload = function(){
 
 // 初回アクセス
 function initialAccess(){
-    login_request();
+    getRecord(url,successFunction,failFunction);
+    // getStudy();
 }
 
 // twitterボタン選択
@@ -35,4 +39,14 @@ function nextclick(){
     location.href = nextHref;
     // 画面遷移エフェクト（app.js）
     pageEffect(nextHref);
+}
+
+// input ret:JSON
+function successFunction(ret){
+    console.log(ret);
+}
+
+// input ret:JSON
+function failFunction(ret){
+    console.log(ret);
 }

@@ -1,5 +1,8 @@
 // 共通部分
 
+// field
+var apiToken = 'KdgX51XX2B5XJXdmxlIPgFGDmD31l6YymQahTKbU';
+
 // tag置き換え
 function tagChange(id,tag){
     document.getElementById(id).innerHTML = tag;
@@ -34,6 +37,8 @@ function pageEffect(nextHref){
     }
 }
 
+
+// encode/decode base64
 var base64list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
 function base64encode(s)
@@ -77,73 +82,78 @@ function base64decode(s)
   return t;
 }
 
-var loginName = '';
-var loginPass = '';
-var authorization = '';
-var requestHeader ={
-    url: "https://401wo.cybozu.com/k/guest/1/v1/record.json",
-    method: "GET",
-    headers: {
-      "X-Cybozu-Authorization": authorization,
-      "Content-Type": "application/json"
-    },
-    params: {
-      "app": 22
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+
+    // Check if the XMLHttpRequest object has a "withCredentials" property.
+    // "withCredentials" only exists on XMLHTTPRequest2 objects.
+    xhr.open(method, url, true);
+
+  } else if (typeof XDomainRequest != "undefined") {
+
+    // Otherwise, check if XDomainRequest.
+    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+
+  } else {
+
+    // Otherwise, CORS is not supported by the browser.
+    xhr = null;
+
+  }
+  return xhr;
+}
+
+function getRecord(url,successFunction,failFunction){
+    console.log(url);
+    req= createCORSRequest('GET', url);
+    if (!req) {
+      throw new Error('CORS not supported');
     }
-};
-var request = new XMLHttpRequest();
-var data = '?app=22&id=26';
-var url = 'https://401wo.cybozu.com/k/v1/record.json'+data;
-// var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json'+data;
-// function login_request(){
-    
-//     authorization = base64encode(loginName+':'+loginPass);
-    
-//     request.open('GET', url);
-//     request.onreadystatechange = function(){
-//         if(request.readyState == 4){
-//             if(request.status == 200){
-//                 alert("Successfully logged in");                
-//             }else{
-//                 // alert("Login name or password is incorrect.");                
-//                 alert('response:'+request.status);
-//             }
-//         }
-//     }
-//     request.setRequestHeader('Host','401wo.cybozu.com:443');
-//     request.setRequestHeader('X-Cybozu-Authorization',authorization);
-//     request.setRequestHeader('Authorization','Basic '+authorization);
-//     request.setRequestHeader('Content-Type','application/json');
-//     request.send(data);
-// }
-function login_request(){
-    authorization = base64encode(loginName+':'+loginPass);
-    request.open('GET', url);
-    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    request.onload = function() {
-        if (request.status === 200) {
-            // success
-            console.log(JSON.parse(request.responseText));
-        } else {
-            // error
-            console.log(JSON.parse(request.responseText));
-        }
+
+    req.onload = function() {
+      if (req.status === 200) {
+        // success
+        console.log(JSON.parse(req.responseText));
+        successFunction(JSON.parse(req.responseText));
+      } else {
+        // error
+        console.log(JSON.parse(req.responseText));
+        failFunction(JSON.parse(req.responseText));
+      }
     };
-    // request.onreadystatechange = function() {
-    //     if(request.readyState == 4){
-    //         alert('response:'+request.status);
-    //         if (request.status == 200) {
-    //             // success
-    //             alert(JSON.parse(request.responseText));
-    //         } else {
-    //             // error
-    //             alert(JSON.parse(request.responseText));
-    //         }
-    //     }
-    // };
-    // request.setRequestHeader('Host','401wo.cybozu.com:443');
-    // request.setRequestHeader('X-Cybozu-Authorization',authorization);
-    // request.setRequestHeader('Authorization','Basic '+authorization);
-    // request.setRequestHeader('Content-Type','application/json');
-    request.send();
+    
+  req.setRequestHeader('X-Cybozu-API-Token',apiToken);
+  req.send();
+}
+
+function getStudy() {
+  var hostUrl= 'https://dev01.dstn.club/dataspider/trigger/study';
+  var param1 = "user";
+  var param2 = "1";
+  var param3 = "1";
+  var data3 = {"userid" : param1, "questionid" : param2, "ansid":param3 };
+
+  req= createCORSRequest('POST', hostUrl);
+  if (!req) {
+    throw new Error('CORS not supported');
+  }
+
+  req.onload = function() {
+    if (req.status === 200) {
+      // success
+      console.log(JSON.parse(req.responseText));
+    } else {
+      // error
+      console.log('error');
+      console.log(JSON.parse(req.responseText));
+    }
+  };
+  
+  req.setRequestHeader('Content-Type','application/json');
+  req.setRequestHeader('X-HTTP-Method-Override','POST');
+  req.setRequestHeader('dataType','json');
+  req.send(JSON.stringify(data3));
 }
