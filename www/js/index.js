@@ -9,6 +9,9 @@ var changeId = 'start_button';
 
 var nextHref = 'input.html';
 
+// field
+var apiToken = 'KdgX51XX2B5XJXdmxlIPgFGDmD31l6YymQahTKbU';
+
 var data = '?app=22&id=44';
 var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json'+data;
 
@@ -20,7 +23,7 @@ window.onload = function(){
 
 // 初回アクセス
 function initialAccess(){
-    getRecord(url,successFunction,failFunction);
+    getRecord(url,successFunction,failFunction,apiToken);
     // getStudy();
 }
 

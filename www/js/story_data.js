@@ -1,4 +1,8 @@
 // parameter設定
+var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json';
+var initialData = '?app=19&id=1';
+var apiToken = 'p032PfITGt3TlGzttvRjfQxkeehxdeoGoY2mhE61';
+
 var interviewData = [{
     "image":"https://s3-ap-northeast-1.amazonaws.com/dev-box-bitriver-s3/red2017/cosplay-851050_640.jpg",
     "questionid":'1',

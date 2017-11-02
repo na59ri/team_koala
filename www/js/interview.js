@@ -9,8 +9,12 @@ var imageId = 'background_image';
 var questionId = 'question';
 var ansListId = 'ans_list';
 
+var receiveJson;
+
 // 起動時読み込み(window.onload)
 window.onload = function(){
+
+    getRecord(url+initialData,successFunction,failFunction,apiToken);
     // 事前入力情報の取得
     getCloudData();
 }
@@ -82,3 +86,37 @@ function changeAnslist(id,anslist){
 function changeQuestion(id,question){
     tagChange(id,question);
 }
+
+// input ret:JSON
+function successFunction(ret){
+    receiveArray = ret;
+    getCloudData1(ret);
+}
+
+// input ret:JSON
+function failFunction(ret){
+    console.log(ret);
+}
+
+// 事前入力情報の取得
+function getCloudData1(data){
+
+    // 取得した配列データを表示できる形式に変更
+    parseData(data);
+        
+    changeImage(imageId,image);
+    changeQuestion(questionId,question);
+    changeAnslist(ansListId,anslist);
+}
+
+function parseData(data){
+    image = data['record']['画像URL']['value'];
+    questionid = Number(data['record']['シナリオNo']['value']);
+    question = data['record']['シナリオ']['value'];
+    anslist=[];
+    for(var i=0;i<data['record']['回答']['value'].length;i++){
+        anslist.push(
+            {id:data['record']['回答']['value'][i]['value']['回答番号']['value'] , ans:data['record']['回答']['value'][i]['value']['回答内容']['value']});
+    }
+}
+
