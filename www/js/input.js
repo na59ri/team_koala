@@ -9,13 +9,6 @@ var nextHref = 'interview.html';
 // 起動時読み込み(window.onload)
 window.onload = function(){
 
-    // 年齢の option追加
-    var selectAge = '';
-    for(var i=startAge;i<=endAge;i++){
-        selectAge=selectAge+'<option value="'+i+'">'+i+'</option>';
-    }
-    tagChange(ageId,selectAge);
-
     // 事前入力情報の取得
     getInitialInput();
 }
@@ -23,7 +16,14 @@ window.onload = function(){
 
 // 事前入力情報の取得
 function getInitialInput(){
-    
+        // 年齢の option追加
+        var selectAge = '';
+        for(var i=startAge;i<=endAge;i++){
+            selectAge=selectAge+'<option value="'+i+'">'+i+'</option>';
+        }
+        tagChange(ageId,selectAge);
+
+
 }
 
 // ボタン選択時

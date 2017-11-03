@@ -1,4 +1,5 @@
 var imageUrl;
+var imageId = "picture";
 
 //画像撮影
 function snapPicture() {
@@ -18,14 +19,15 @@ function onSuccess(imageData) {
 
     imageUrl = imageData;
 
-    var image = $("#picture");
-    image.show();
-    image.attr("src", "data:image/jpeg;base64," + imageData);
+    // var image = $("#picture");
+    // image.show();
+    // image.attr("src", "data:image/jpeg;base64," + imageData);
+    document.getElementById(imageId).src = imageUrl;
 }
 
 //A callback function when snapping picture is fail.
 function onFail(message) {
-    $("#picture").hide();
+    // $("#picture").hide();
     takingPicture = false;
     setLoading(false);
     alertMessage("写真を撮影してください。");
@@ -53,7 +55,7 @@ function savePictureData() {
             alertMessage("画像の登録に失敗しました。");
         });
     } else {
-        $("#picture").hide();
+        // $("#picture").hide();
         alertMessage("画像を撮影してください。");
     }
 }
