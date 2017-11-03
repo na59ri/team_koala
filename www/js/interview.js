@@ -1,7 +1,6 @@
 // parameter設定
-
 var image;
-var questionid;
+var questionId = 1;
 var question;
 var anslist;
 
@@ -18,12 +17,12 @@ window.onload = function(){
 
     // 検索用クエリ
     var query = {'シナリオNo':String(questionId),'性別':sex};
-    getSearchRecord(url,getAppId,1,query,successFunction,failFunction,getApiToken);
+    // kintone にて検索
+    getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
 
     // 事前入力情報の取得
     // getCloudData();
 }
-
 
 // 事前入力情報の取得
 function getCloudData(){
@@ -47,9 +46,37 @@ function nextClick(object){
     // 選択時の回答番号を取得
     var value = object.getAttribute('value');
 
+    // 登録用レコード作成
+    var record = {
+        "app": postAppId,
+        "record":{
+            "ユーザーID": {
+                "value": userId
+            },
+            "性別": {
+                "value": sex
+            },
+            "回答番号": {
+                "value": Number(value)
+            },
+            "シナリオID": {
+                "value": scenarioId
+            },
+            "シナリオNo": {
+                "value": questionId
+            }
+        }
+    }
+
+    // 回答の登録
+    postRecord(url,record,successPostRecordFunction,failPostRecordFunction)
+    // var params = '?app=' + postAppId + '&id=' + 1;
+    // getRecord(url+params,successPostRecordFunction,failPostRecordFunction,postApiToken);
+
     // 検索用クエリ
-    var query = {'シナリオNo':String(++questionId),'性別':sex};
-    getSearchRecord(url,getAppId,1,query,successFunction,failFunction,getApiToken);
+    // var query = {'シナリオNo':String(++questionId),'性別':sex};
+    // getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
+
     // if(questionid < interviewData.length){
     //     // エフェクト
     //     pageEffect(questionid);
@@ -59,6 +86,18 @@ function nextClick(object){
     //     // 画面遷移エフェクト（app.js）
     //     pageEffect(nextHref);
     // }
+}
+
+function successPostRecordFunction(data){
+    // 検索用クエリ
+    var query = {'シナリオNo':String(++questionId),'性別':sex};
+    getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
+}
+
+function failPostRecordFunction(data){
+    // 検索用クエリ
+    var query = {'シナリオNo':String(++questionId),'性別':sex};
+    getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);    
 }
 
 // 同一ファイル内エフェクト(未実装)
@@ -84,7 +123,7 @@ function changeAnslist(id,anslist){
     var tag = '';
     for(var i=0;i<anslist.length;i++){
         var item = anslist[i];
-        tag = tag + '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.ansid+'"'+
+        tag = tag + '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.id+'"'+
         '><div class="list-item__center list-item--longdivider__center">'+item.ans+'</div></li>';
     }
     tagChange(id,tag);
@@ -96,13 +135,13 @@ function changeQuestion(id,question){
 }
 
 // input ret:JSON
-function successFunction(ret){
+function successGetRecordFunction(ret){
     receiveArray = ret;
     getCloudData1(ret);
 }
 
 // input ret:JSON
-function failFunction(ret){
+function failGetRecordFunction(ret){
     location.href = nextHref;
     // 画面遷移エフェクト（app.js）
     pageEffect(nextHref);

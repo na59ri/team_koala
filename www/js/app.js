@@ -1,8 +1,12 @@
 // 共通部分
-var userId = 'user1';
-var senarioId = 1;
+var userId = 'zzz_user1';
+var scenarioId = 1;
 var characterId = 1;
 var answerScore = 0;
+
+var authorization = 'YW5kb3U6YW5kb3U=';
+var loginName = 'andou';
+var loginPass = 'andou';
 
 // tag置き換え
 function tagChange(id,tag){
@@ -38,6 +42,49 @@ function pageEffect(nextHref){
   }
 }
 
+// encode/decode base64
+var base64list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+function base64encode(s)
+{
+  var t = '', p = -6, a = 0, i = 0, v = 0, c;
+
+  while ( (i < s.length) || (p > -6) ) {
+    if ( p < 0 ) {
+      if ( i < s.length ) {
+        c = s.charCodeAt(i++);
+        v += 8;
+      } else {
+        c = 0;
+      }
+      a = ((a&255)<<8)|(c&255);
+      p += 8;
+    }
+    t += base64list.charAt( ( v > 0 )? (a>>p)&63 : 64 )
+    p -= 6;
+    v -= 6;
+  }
+  return t;
+}
+
+function base64decode(s)
+{
+  var t = '', p = -8, a = 0, c, d;
+
+  for( var i = 0; i < s.length; i++ ) {
+    if ( ( c = base64list.indexOf(s.charAt(i)) ) < 0 )
+      continue;
+    a = (a<<6)|(c&63);
+    if ( ( p += 6 ) >= 0 ) {
+      d = (a>>p)&255;
+      if ( c != 64 )
+        t += String.fromCharCode(d);
+      a &= 63;
+      p -= 8;
+    }
+  }
+  return t;
+}
 
 // Get XMLHttpRequest instance
 function createCORSRequest(method, url) {
@@ -147,6 +194,32 @@ function getStudy() {
   req.setRequestHeader('X-HTTP-Method-Override','POST');
   req.setRequestHeader('dataType','json');
   req.send(JSON.stringify(data3));
+}
+
+// Register kintone recode
+function postRecord(url,jsonData,successFunction,failFunction){
+  console.log(url+' : '+authorization);
+  req= createCORSRequest('POST', url);
+  if (!req) {
+    throw new Error('CORS not supported');
+  }
+
+  req.onload = function() {
+    if (req.status === 200) {
+      // success
+      console.log(JSON.parse(req.responseText));
+      successFunction(JSON.parse(req.responseText));
+    } else {
+      // error
+      console.log(JSON.parse(req.responseText));
+      failFunction(JSON.parse(req.responseText));
+    }
+  };
+  
+  // req.setRequestHeader('X-Cybozu-API-Token',apiToken);
+  req.setRequestHeader('X-Cybozu-Authorization',authorization);
+  req.setRequestHeader('Content-Type','application/json');
+  req.send(JSON.stringify(jsonData));
 }
 
 // ファイル書き込み処理：未確認
