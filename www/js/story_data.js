@@ -1,6 +1,5 @@
 // parameter設定
 var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json';
-var initialData = '?app=19&id=1';
 var initialScenarioId = 1;
 var sex = '男';
 var getAppId = 19;

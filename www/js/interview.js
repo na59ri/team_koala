@@ -20,25 +20,6 @@ window.onload = function(){
     // kintone にて検索
     getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
 
-    // 事前入力情報の取得
-    // getCloudData();
-}
-
-// 事前入力情報の取得
-function getCloudData(){
-    // ダミーデータ
-    if(0<interviewData.length){
-
-        var item = interviewData[0];
-        image = item.image;
-        questionid = Number(item.questionid);
-        question = item.question;
-        anslist = item.anslist;
-        
-        changeImage(imageIdKey,image);
-        changeQuestion(questionIdKey,question);
-        changeAnslist(ansListIdKey,anslist);
-    }
 }
 
 // ボタン選択時
@@ -68,49 +49,23 @@ function nextClick(object){
         }
     }
 
+    questionId = questionId + 1;
     // 回答の登録
     postRecord(url,record,successPostRecordFunction,failPostRecordFunction)
-    // var params = '?app=' + postAppId + '&id=' + 1;
-    // getRecord(url+params,successPostRecordFunction,failPostRecordFunction,postApiToken);
-
-    // 検索用クエリ
-    // var query = {'シナリオNo':String(++questionId),'性別':sex};
-    // getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
-
-    // if(questionid < interviewData.length){
-    //     // エフェクト
-    //     pageEffect(questionid);
-    // } else {
-    //     // 遷移先URL
-    //     location.href = nextHref;
-    //     // 画面遷移エフェクト（app.js）
-    //     pageEffect(nextHref);
-    // }
 }
 
+// 正常にHTTPレスポンスが来た時に動作
 function successPostRecordFunction(data){
     // 検索用クエリ
-    var query = {'シナリオNo':String(++questionId),'性別':sex};
+    var query = {'シナリオNo':String(questionId),'性別':sex};
     getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
 }
 
+// HTTPレスポンスがエラーになった時に動作
 function failPostRecordFunction(data){
     // 検索用クエリ
-    var query = {'シナリオNo':String(++questionId),'性別':sex};
+    var query = {'シナリオNo':String(questionId),'性別':sex};
     getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);    
-}
-
-// 同一ファイル内エフェクト(未実装)
-function pageEffect(id){
-    var item = interviewData[id];
-    image = item.image;
-    questionid = Number(item.questionid);
-    question = item.question;
-    anslist = item.anslist;
-    
-    changeImage(imageIdKey,image);
-    changeQuestion(questionIdKey,question);
-    changeAnslist(ansListIdKey,anslist);
 }
 
 // 画像置き換え
@@ -137,7 +92,7 @@ function changeQuestion(id,question){
 // input ret:JSON
 function successGetRecordFunction(ret){
     receiveArray = ret;
-    getCloudData1(ret);
+    getCloudData(ret);
 }
 
 // input ret:JSON
@@ -148,7 +103,7 @@ function failGetRecordFunction(ret){
 }
 
 // 事前入力情報の取得
-function getCloudData1(data){
+function getCloudData(data){
 
     // 取得した配列データを表示できる形式に変更
     parseArrayData(data);

@@ -1,4 +1,13 @@
 // parameter設定
+var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json';
+var initialScenarioId = 1;
+var sex = '女';
+var getAppId = 19;
+var getApiToken = 'p032PfITGt3TlGzttvRjfQxkeehxdeoGoY2mhE61';
+var postAppId = 22;
+var postApiToken = 'KdgX51XX2B5XJXdmxlIPgFGDmD31l6YymQahTKbU';
+
+// parameter設定
 var interviewData = [{
     "image":"images/woman_test1.png",
     "questionid":'1',
