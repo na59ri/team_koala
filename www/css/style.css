@@ -134,7 +134,7 @@ body.fadeout article{
 }
 
 /* 評価画面：タイトル */
-.eva_type{
+.input_image{
     position: relative;
     padding-left: 5%;
     padding-right: 5%;
@@ -142,20 +142,21 @@ body.fadeout article{
     text-align: center;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    margin-top:4%;
+    margin-top:8%;
+    margin-bottom:8%;
     color: #aaaaaa
 }
 
 /* 評価画面：イメージ */
 .eva_advice{
     position: relative;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
     left: 50%;
     text-align: center;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    margin-top:4%;
+
     color: #aaaaaa
 }
 
@@ -167,4 +168,19 @@ body.fadeout article{
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     margin-bottom:5%;
+}
+
+/* インタビュー画面：性別〜年齢 */
+
+
+.chara_list{
+    position: absolute;
+    width: 92%;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-top: 10%;
+    margin-left: 2%;
+    margin-right: 2%;
+    z-index: 1;
+    background-color: rgba(255,255,255,1);
 }

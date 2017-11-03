@@ -7,7 +7,7 @@ var twitterButton = '<a class="button" onclick="register()">twitterへ登録</a>
 var startButton = '<a class="button" onClick="nextclick()">スタート！</a>';
 var changeId = 'start_button';
 
-var nextHref = 'story.html';
+var nextHref = 'character.html';
 
 // 起動時読み込み(window.onload)
 window.onload = function(){
