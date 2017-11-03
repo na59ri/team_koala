@@ -21,21 +21,19 @@
     <div>
         <div class="input_title"><H2>personal interview</H2></div>
         <div class="input_image">
-            <input onclick="snapPicture()" >
-                <div align="center">
-                    <img id="picture" src="images/camera.png" width="100" height="100" />
-                </div>
-            </input>
+            <div align="center">
+                <img id="picture" src="images/camera.png" width="100" height="100" onclick="snapPicture()" />
+            </div>
         </div>
         <div class="input_body">
             <div class="input_body_title">gender</div>
             <label class="radio-button radio-button--material">
-                <input type="radio" class="radio-button__input radio-button--material__input" name="man" checked="checked" id="item1" />
+                <input type="radio" class="radio-button__input radio-button--material__input" name="sex" checked="checked" value="男">
                 <div class="radio-button__checkmark radio-button--material__checkmark"></div>
                 Man
             </label>
             <label class="radio-button radio-button--material">
-                <input type="radio" class="radio-button__input radio-button--material__input" name="woman" id="item2" />
+                <input type="radio" class="radio-button__input radio-button--material__input" name="sex" value="女" >
                 <div class="radio-button__checkmark radio-button--material__checkmark"></div>
                 Woman
             </label>
@@ -49,7 +47,7 @@
             <select name="age" id="login_age" class="select-input  select-input--material"></select>
         </div>
         <div class="input_button">
-            <a onClick="nextclick()" class="button">登録</a>
+            <label onClick="nextclick()" class="button">登録</label>
         </div>
     </div>
 </body>

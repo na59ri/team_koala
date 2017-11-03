@@ -51,7 +51,7 @@ function nextClick(object){
 
     questionId = questionId + 1;
     // 回答の登録
-    postRecord(url,record,successPostRecordFunction,failPostRecordFunction)
+    postRecord(url,record,successPostRecordFunction,failPostRecordFunction);
 }
 
 // 正常にHTTPレスポンスが来た時に動作
