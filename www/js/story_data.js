@@ -1,7 +1,12 @@
 // parameter設定
 var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json';
 var initialData = '?app=19&id=1';
-var apiToken = 'p032PfITGt3TlGzttvRjfQxkeehxdeoGoY2mhE61';
+var initialScenarioId = 1;
+var sex = '男';
+var getAppId = 19;
+var getApiToken = 'p032PfITGt3TlGzttvRjfQxkeehxdeoGoY2mhE61';
+var setAppId = 22;
+var setApiToken = 'KdgX51XX2B5XJXdmxlIPgFGDmD31l6YymQahTKbU';
 
 var interviewData = [{
     "image":"https://s3-ap-northeast-1.amazonaws.com/dev-box-bitriver-s3/red2017/cosplay-851050_640.jpg",

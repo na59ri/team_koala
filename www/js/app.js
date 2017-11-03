@@ -1,5 +1,8 @@
 // 共通部分
-var userId = '';
+var userId = 'user1';
+var senarioId = 1;
+var characterId = 1;
+var answerScore = 0;
 
 // tag置き換え
 function tagChange(id,tag){
@@ -13,28 +16,30 @@ $(window).on('load', function(){
 
 $(function() {
 // ハッシュリンク(#)と別ウィンドウでページを開く場合はスルー
-    $('a:not([href^="#"]):not([target])').on('click', function(e){
-        e.preventDefault(); // ナビゲートをキャンセル
-        url = $(this).attr('href'); // 遷移先のURLを取得
-        if (url !== '') {
-        $('body').addClass('fadeout');  // bodyに class="fadeout"を挿入
-        setTimeout(function(){
-            window.location = url;  // 0.8秒後に取得したURLに遷移
-        }, 800);
-        }
-        return false;
-    });
+  $('a:not([href^="#"]):not([target])').on('click', function(e){
+    e.preventDefault(); // ナビゲートをキャンセル
+    url = $(this).attr('href'); // 遷移先のURLを取得
+    if (url !== '') {
+      $('body').addClass('fadeout');  // bodyに class="fadeout"を挿入
+      setTimeout(function(){
+          window.location = url;  // 0.8秒後に取得したURLに遷移
+      }, 800);
+    }
+    return false;
+  });
 });
 
 function pageEffect(nextHref){
-    if(nextHref !== ''){
-        document.getElementsByTagName('body').className = 'fadeout';
-        setTimeout(function(){
-            window.location = url;  // 0.8秒後に取得したURLに遷移
-        }, 800);
-    }
+  if(nextHref !== ''){
+      document.getElementsByTagName('body').className = 'fadeout';
+      setTimeout(function(){
+          window.location = url;  // 0.8秒後に取得したURLに遷移
+      }, 800);
+  }
 }
 
+
+// Get XMLHttpRequest instance
 function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
@@ -59,6 +64,38 @@ function createCORSRequest(method, url) {
   return xhr;
 }
 
+// search kintone recode
+function getSearchRecord(url,appId,id,searchJson,successFunction,failFunction,apiToken){
+  function successSearchFunction(data){
+    if(compareSearchData(searchJson,data)){
+      successFunction(data);
+    }else{
+      getSearchRecord(url,appId,++id,searchJson,successFunction,failFunction,apiToken);
+    }
+  }
+  function failSearchFunction(data){
+    failFunction(data);
+  }
+
+  var params = '?app=' + appId + '&id=' + id;
+  getRecord(url+params,successSearchFunction,failSearchFunction,apiToken);
+}
+
+function compareSearchData(searchJson,data){
+  var flag = true;
+  var searchArray = Object.keys(searchJson);
+  for(var i=0;i<searchArray.length;i++){
+    console.log('searchArray:'+searchArray[i]+', searchJson:'+searchJson[searchArray[i]]+', data:'+data['record'][searchArray[i]]['value']);
+    if(searchJson[searchArray[i]] !== data['record'][searchArray[i]]['value']){
+      console.log('compareSearchData false');
+      flag = false;
+      break;
+    }
+  }
+  return flag;
+}
+
+// Get kintone recode
 function getRecord(url,successFunction,failFunction,apiToken){
     console.log(url+' : '+apiToken);
     req= createCORSRequest('GET', url);
@@ -82,6 +119,7 @@ function getRecord(url,successFunction,failFunction,apiToken){
   req.send();
 }
 
+// Get dataspider recode
 function getStudy() {
   var hostUrl= 'https://dev01.dstn.club/dataspider/trigger/study';
   var param1 = "user";
