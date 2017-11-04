@@ -167,14 +167,9 @@ function getRecord(url,successFunction,failFunction,apiToken){
 }
 
 // Get dataspider recode
-function getStudy() {
-  var hostUrl= 'https://dev01.dstn.club/dataspider/trigger/study';
-  var param1 = "user";
-  var param2 = "1";
-  var param3 = "1";
-  var data3 = {"userid" : param1, "questionid" : param2, "ansid":param3 };
+function getSearchRecordDataSpider(url,successFunction,failFunction) {
 
-  req= createCORSRequest('POST', hostUrl);
+  req= createCORSRequest('GET', url);
   if (!req) {
     throw new Error('CORS not supported');
   }
@@ -183,17 +178,40 @@ function getStudy() {
     if (req.status === 200) {
       // success
       console.log(JSON.parse(req.responseText));
+      successFunction(JSON.parse(req.responseText));
+
+    } else {
+      // error
+      console.log('error');
+      console.log(JSON.parse(req.responseText));
+      failFunction(JSON.parse(req.responseText));
+    }
+  };
+
+  req.send();
+}
+
+function getDataSpider() {
+  var hostUrl= 'https://dev01.dstn.club/dataspider/trigger/url?scenario=10&gender=女';
+
+  req= createCORSRequest('GET', hostUrl);
+  if (!req) {
+    throw new Error('CORS not supported');
+  }
+
+  req.onload = function() {
+    if (req.status === 200) {
+      // success
+      console.log(JSON.parse(req.responseText));
+
     } else {
       // error
       console.log('error');
       console.log(JSON.parse(req.responseText));
     }
   };
-  
-  req.setRequestHeader('Content-Type','application/json');
-  req.setRequestHeader('X-HTTP-Method-Override','POST');
-  req.setRequestHeader('dataType','json');
-  req.send(JSON.stringify(data3));
+
+  req.send();
 }
 
 // Register kintone recode

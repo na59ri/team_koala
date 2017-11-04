@@ -1,7 +1,8 @@
 // parameter設定
 // 初回起動フラグ
 var initialize = true;
-var twitterButton = '<a class="button" onclick="register()">twitterへ登録</a>';
+// var twitterButton = '<a class="button" onclick="register()">twitterへ登録</a>';
+var twitterButton = '<a class="button" onclick="register()">初回登録</a>';
 // ONSENUI のボタンを利用
 // https://ja.onsen.io/v2/api/css.html#button-category
 var startButton = '<a class="button" onClick="nextclick()">スタート！</a>';
@@ -23,8 +24,8 @@ window.onload = function(){
 
 // 初回アクセス
 function initialAccess(){
-    getRecord(url,successFunction,failFunction,apiToken);
-    // getStudy();
+    // getRecord(url,successFunction,failFunction,apiToken);
+    // getDataSpider();
 }
 
 // twitterボタン選択

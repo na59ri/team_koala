@@ -7,6 +7,8 @@ var getApiToken = 'p032PfITGt3TlGzttvRjfQxkeehxdeoGoY2mhE61';
 var postAppId = 22;
 var postApiToken = 'KdgX51XX2B5XJXdmxlIPgFGDmD31l6YymQahTKbU';
 
+var spiderUrl = 'https://dev01.dstn.club/dataspider/trigger/url';
+
 // parameter設定
 var interviewData = [{
     "image":"images/woman_test1.png",

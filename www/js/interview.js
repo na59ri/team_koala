@@ -16,10 +16,11 @@ window.onload = function(){
     questionId = initialScenarioId;
 
     // 検索用クエリ
-    var query = {'シナリオNo':String(questionId),'性別':sex};
+    // var query = {'シナリオNo':String(questionId),'性別':sex};
     // kintone にて検索
-    getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
-
+    // getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
+    var param = '?scenario='+questionId+'&gender='+sex;
+    getSearchRecordDataSpider(spiderUrl+param,successGetRecordFunction,failGetRecordFunction);
 }
 
 // ボタン選択時
@@ -57,15 +58,21 @@ function nextClick(object){
 // 正常にHTTPレスポンスが来た時に動作
 function successPostRecordFunction(data){
     // 検索用クエリ
-    var query = {'シナリオNo':String(questionId),'性別':sex};
-    getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
+    // var query = {'シナリオNo':String(questionId),'性別':sex};
+    // getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);
+
+    var param = '?scenario='+questionId+'&gender='+sex;
+    getSearchRecordDataSpider(spiderUrl+param,successGetRecordDataSpider,failGetRecordDataSpider);
 }
 
 // HTTPレスポンスがエラーになった時に動作
 function failPostRecordFunction(data){
     // 検索用クエリ
-    var query = {'シナリオNo':String(questionId),'性別':sex};
-    getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);    
+    // var query = {'シナリオNo':String(questionId),'性別':sex};
+    // getSearchRecord(url,getAppId,1,query,successGetRecordFunction,failGetRecordFunction,getApiToken);    
+
+    var param = '?scenario='+questionId+'&gender='+sex;
+    getSearchRecordDataSpider(spiderUrl+param,successGetRecordDataSpider,failGetRecordDataSpider);
 }
 
 // 画像置き換え
@@ -78,8 +85,10 @@ function changeAnslist(id,anslist){
     var tag = '';
     for(var i=0;i<anslist.length;i++){
         var item = anslist[i];
-        tag = tag + '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.id+'"'+
-        '><div class="list-item__center list-item--longdivider__center">'+item.ans+'</div></li>';
+        // tag = tag + '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.id+'"'+
+        // '><div class="list-item__center list-item--longdivider__center">'+item.ans+'</div></li>';
+        tag = tag + '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.answer_no+'"'+
+        '><div class="list-item__center list-item--longdivider__center">'+item.answer+'</div></li>';
     }
     tagChange(id,tag);
 }
@@ -102,12 +111,32 @@ function failGetRecordFunction(ret){
     pageEffect(nextHref);
 }
 
+// input ret:JSON
+function successGetRecordDataSpider(ret){
+    receiveArray = ret;
+    if(ret['url'] === ''){
+        location.href = nextHref;
+        // 画面遷移エフェクト（app.js）
+        pageEffect(nextHref);
+    } else {
+        getCloudData(ret);
+    }
+}
+
+// input ret:JSON
+function failGetRecordDataSpider(ret){
+    location.href = nextHref;
+    // 画面遷移エフェクト（app.js）
+    pageEffect(nextHref);
+}
+
 // 事前入力情報の取得
 function getCloudData(data){
 
     // 取得した配列データを表示できる形式に変更
-    parseArrayData(data);
-        
+    // parseArrayData(data);
+    parseSpiderArrayData(data);
+
     changeImage(imageIdKey,image);
     changeQuestion(questionIdKey,question);
     changeAnslist(ansListIdKey,anslist);
@@ -121,5 +150,11 @@ function parseArrayData(data){
         anslist.push(
             {id:data['record']['回答']['value'][i]['value']['回答番号']['value'] , ans:data['record']['回答']['value'][i]['value']['回答内容']['value']});
     }
+}
+
+function parseSpiderArrayData(data){
+    image = data['url'];
+    question = data['scenario'];
+    anslist = data['answer'];
 }
 

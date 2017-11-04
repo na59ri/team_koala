@@ -7,6 +7,8 @@ var getApiToken = 'p032PfITGt3TlGzttvRjfQxkeehxdeoGoY2mhE61';
 var postAppId = 22;
 var postApiToken = 'KdgX51XX2B5XJXdmxlIPgFGDmD31l6YymQahTKbU';
 
+var spiderUrl = 'https://dev01.dstn.club/dataspider/trigger/url';
+
 var interviewData = [{
     "image":"https://s3-ap-northeast-1.amazonaws.com/dev-box-bitriver-s3/red2017/cosplay-851050_640.jpg",
     "questionid":'1',
