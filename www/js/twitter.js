@@ -120,6 +120,7 @@ function oauthTwitter(){
         var aaa = 'https://api.twitter.com/oauth/authorize?oauth_token=' + data['oauth_token'];
         location.href = aaa;
         // 画面遷移エフェクト（app.js）
+
         pageEffect(aaa);
         
       } else {
