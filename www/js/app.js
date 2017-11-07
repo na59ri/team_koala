@@ -319,10 +319,11 @@ function addJson(from, to){
   if(to === null){
     to = [];
   }
-  
+
   var searchArray = Object.keys(from);
   for(var i=0;i < searchArray.length;i++){
+    console.log(searchArray[i]);
     to[searchArray[i]] = from[searchArray[i]];
   }
-  return to;
+  return JSON.stringify(to);
 }

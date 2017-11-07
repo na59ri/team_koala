@@ -114,7 +114,8 @@ function oauthTwitter(){
         // console.log(JSON.parse(req.responseText));
         console.log(req.responseText);
         var data = getUrlVars(req.responseText);
-        localStorage.setItem(fileName, addJson(data,localStorage.getItem(fileName)));
+        var dummy = addJson(data,localStorage.getItem(fileName));
+        localStorage.setItem(fileName, dummy);
         // 遷移先URL
         var aaa = 'https://api.twitter.com/oauth/authorize?oauth_token=' + data['oauth_token'];
         location.href = aaa;
@@ -294,7 +295,7 @@ function is(type, obj) {
 }
 
 function getUrlVars(urlData) {
-    var vars = {}, max = 0, hash = "", array = "";
+    var vars = [], max = 0, hash = "", array = "";
 
     //?を取り除くため、1から始める。複数のクエリ文字列に対応するため、&で区切る
     hash  = urlData.split('&');    
@@ -304,5 +305,5 @@ function getUrlVars(urlData) {
         vars[array[0]] = array[1];    //先ほど確保したkeyに、値を代入。
     }
 
-    return JSON.stringify(vars);
+    return vars;
 }
