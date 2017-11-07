@@ -113,12 +113,8 @@ function oauthTwitter(){
         // success
         // console.log(JSON.parse(req.responseText));
         console.log(req.responseText);
-        data = getUrlVars(req.responseText);
-        // data = {
-        //     'oauth_token':'bSiwzwAAAAAA3DglAAABX4yBynY',
-        //     'oauth_token_secret':'GKaERjU6UAlQVhsubVQLGNPfI4R2LAhD',
-        //     'oauth_callback_confirmed':'true'
-        // };
+        var data = getUrlVars(req.responseText);
+        localStorage.setItem(fileName, addJson(data,localStorage.getItem(fileName)));
         // 遷移先URL
         var aaa = 'https://api.twitter.com/oauth/authorize?oauth_token=' + data['oauth_token'];
         location.href = aaa;
@@ -140,9 +136,14 @@ var oauth_request = {
     'oauth_token_secret':'WKHCJyxOZccbNlr6E9fmc882uvZ6h9gc',
 }
 function settingTwitter(tokenData){
+
+    var data = addJson(tokenData,localStorage.getItem(fileName));
+
+    console.log(data);
+
     var accessor = {
         consumerSecret: 'HklMSi6axsK4cf6xMDJgJVBbIKueZ4eCbdvZYibZCNXFxlSfns',
-        tokenSecret: oauth_request['oauth_token_secret']
+        tokenSecret: data['oauth_token_secret']
     };
     
     var message = {
@@ -151,8 +152,8 @@ function settingTwitter(tokenData){
         parameters: {
             oauth_signature_method: "HMAC-SHA1",
             oauth_consumer_key: 'dVTYF3gpuAoKcuKemij2h7pne',
-            oauth_token: oauth_request['oauth_token'],
-            oauth_verifier: tokenData["oauth_verifier"]
+            oauth_token: data['oauth_token'],
+            oauth_verifier: data["oauth_verifier"]
         }
     };
     OAuth.setTimestampAndNonce(message);
@@ -293,7 +294,7 @@ function is(type, obj) {
 }
 
 function getUrlVars(urlData) {
-    var vars = [], max = 0, hash = "", array = "";
+    var vars = {}, max = 0, hash = "", array = "";
 
     //?を取り除くため、1から始める。複数のクエリ文字列に対応するため、&で区切る
     hash  = urlData.split('&');    
@@ -303,5 +304,5 @@ function getUrlVars(urlData) {
         vars[array[0]] = array[1];    //先ほど確保したkeyに、値を代入。
     }
 
-    return vars;
+    return JSON.stringify(vars);
 }

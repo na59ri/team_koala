@@ -25,7 +25,7 @@ window.onload = function(){
         }
     } else {
         // Get request token
-        // oauthTwitter();
+        oauthTwitter();
     }
     // 事前入力情報の取得
     getInitialInput();

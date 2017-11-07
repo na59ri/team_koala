@@ -5,8 +5,7 @@ var characterId = 1;
 var answerScore = 0;
 
 var authorization = 'YW5kb3U6YW5kb3U=';
-var loginName = 'andou';
-var loginPass = 'andou';
+var fileName = "loveSimuration.json";
 
 // tag置き換え
 function tagChange(id,tag){
@@ -314,4 +313,16 @@ var errorHandler = function (fileName, e) {
   };
 
   console.log('Error (' + fileName + '): ' + msg);
+}
+
+function addJson(from, to){
+  if(to === null){
+    to = [];
+  }
+  
+  var searchArray = Object.keys(from);
+  for(var i=0;i < searchArray.length;i++){
+    to[searchArray[i]] = from[searchArray[i]];
+  }
+  return to;
 }
