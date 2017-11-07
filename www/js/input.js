@@ -8,10 +8,25 @@ var postAppId = 1;
 var url = 'https://401wo.cybozu.com/k/guest/1/v1/record.json';
 
 var nextHref = 'interview.html';
+var inputUrl = "";
+var vars = [];
 
 // 起動時読み込み(window.onload)
 window.onload = function(){
+    
+    inputUrl = window.location.search;
+    var data = [];
 
+    console.log(inputUrl);
+    if(inputUrl !== ""){
+        data = getUrlVars(inputUrl.slice(1));
+        if(data["oauth_verifier"] !== '' ){
+            settingTwitter(data);
+        }
+    } else {
+        // Get request token
+        // oauthTwitter();
+    }
     // 事前入力情報の取得
     getInitialInput();
 }
