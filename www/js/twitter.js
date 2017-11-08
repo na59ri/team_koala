@@ -114,7 +114,8 @@ function oauthTwitter(){
         // console.log(JSON.parse(req.responseText));
         console.log(req.responseText);
         var data = getUrlVars(req.responseText);
-        var dummy = addJson(data,localStorage.getItem(fileName));
+        // var dummy = addJson(data,localStorage.getItem(fileName));
+        var dummy = addJson(data,null);
         localStorage.setItem(fileName, dummy);
         // 遷移先URL
         var aaa = 'https://api.twitter.com/oauth/authorize?oauth_token=' + data['oauth_token'];

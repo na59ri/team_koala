@@ -316,14 +316,20 @@ var errorHandler = function (fileName, e) {
 }
 
 function addJson(from, to){
-  if(to === null){
-    to = [];
+
+  var data = [];
+  if(to !== null){
+    var searchArray =Object.keys(to);
+    for(var i=0;i < searchArray.length;i++){
+      console.log('to:'+searchArray[i]);
+      data[searchArray[i]] = to[searchArray[i]];
+    }
   }
 
   var searchArray = Object.keys(from);
   for(var i=0;i < searchArray.length;i++){
-    console.log(searchArray[i]);
-    to[searchArray[i]] = from[searchArray[i]];
+    console.log('from:'+searchArray[i]);
+    data[searchArray[i]] = from[searchArray[i]];
   }
-  return to;
+  return data;
 }
