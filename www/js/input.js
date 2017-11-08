@@ -29,7 +29,7 @@ window.onload = function(){
             accessTokenTwitter(getLocalStorage());
 
             // プロフィール取得
-            // settingTwitter(getLocalStorage());
+            settingTwitter(getLocalStorage());
         }
     } else {
         // Get request token
