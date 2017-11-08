@@ -325,5 +325,5 @@ function addJson(from, to){
     console.log(searchArray[i]);
     to[searchArray[i]] = from[searchArray[i]];
   }
-  return JSON.stringify(to);
+  return to;
 }
