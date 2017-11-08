@@ -1,6 +1,7 @@
 // parameter設定
 // 初回起動フラグ
-var ageId = "login_age";
+var ageId = 'login_age';
+var nicknameId = 'login_nickname';
 var startAge= 18;
 var endAge= 70;
 
@@ -21,25 +22,48 @@ window.onload = function(){
     if(inputUrl !== ""){
         data = getUrlVars(inputUrl.slice(1));
         if(data["oauth_verifier"] !== '' ){
-            settingTwitter(data);
+            // 認証が通っていたら、データを保存
+            setLocalStorage(data);
+
+            // アクセストークンを取得
+            accessTokenTwitter(getLocalStorage());
+
+            // プロフィール取得
+            // settingTwitter(getLocalStorage());
         }
     } else {
         // Get request token
-        oauthTwitter();
+        requestTokenTwitter();
     }
+
+    data = getLocalStorage();
+
     // 事前入力情報の取得
     getInitialInput();
+
+    if(data['screen_name'] !== undefined){
+        // 名前置き換え
+        tagChange(nicknameId, data['screen_name'] );
+
+        // タイムライン取得
+        timelineTwitter(data,200,successTimeLine,failTimeLine)
+    }
 }
 
+function successTimeLine(input){
+    console.log(JSON.parse(input));
+}
+
+function failTimeLine(input){}
 
 // 事前入力情報の取得
 function getInitialInput(){
-        // 年齢の option追加
-        var selectAge = '';
-        for(var i=startAge;i<=endAge;i++){
-            selectAge=selectAge+'<option value="'+i+'">'+i+'</option>';
-        }
-        tagChange(ageId,selectAge);
+    // 年齢の option追加
+    var selectAge = '';
+    for(var i=startAge;i<=endAge;i++){
+        selectAge=selectAge+'<option value="'+i+'">'+i+'</option>';
+    }
+    tagChange(ageId,selectAge);
 }
 
 // ボタン選択時
