@@ -15,39 +15,39 @@ var vars = [];
 // 起動時読み込み(window.onload)
 window.onload = function(){
     
-    inputUrl = window.location.search;
-    var data = [];
+    // inputUrl = window.location.search;
+    // var data = [];
 
-    console.log(inputUrl);
-    if(inputUrl !== ""){
-        data = getUrlVars(inputUrl.slice(1));
-        if(data["oauth_verifier"] !== '' ){
-            // 認証が通っていたら、データを保存
-            setLocalStorage(data);
+    // console.log(inputUrl);
+    // if(inputUrl !== ""){
+    //     data = getUrlVars(inputUrl.slice(1));
+    //     if(data["oauth_verifier"] !== '' ){
+    //         // 認証が通っていたら、データを保存
+    //         setLocalStorage(data);
 
-            // アクセストークンを取得
-            accessTokenTwitter(getLocalStorage());
+    //         // アクセストークンを取得
+    //         accessTokenTwitter(getLocalStorage());
 
-            // プロフィール取得
-            settingTwitter(getLocalStorage());
-        }
-    } else {
-        // Get request token
-        requestTokenTwitter();
-    }
+    //         // プロフィール取得
+    //         settingTwitter(getLocalStorage());
+    //     }
+    // } else {
+    //     // Get request token
+    //     requestTokenTwitter();
+    // }
 
-    data = getLocalStorage();
+    // data = getLocalStorage();
 
     // 事前入力情報の取得
     getInitialInput();
 
-    if(data['screen_name'] !== undefined){
-        // 名前置き換え
-        tagChange(nicknameId, data['screen_name'] );
+    // if(data['screen_name'] !== undefined){
+    //     // 名前置き換え
+    //     tagChange(nicknameId, data['screen_name'] );
 
-        // タイムライン取得
-        timelineTwitter(data,200,successTimeLine,failTimeLine)
-    }
+    //     // タイムライン取得
+    //     timelineTwitter(data,200,successTimeLine,failTimeLine)
+    // }
 }
 
 function successTimeLine(input){
