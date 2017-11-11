@@ -32,7 +32,33 @@ body.fadeout article{
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     margin-top:5%;
+}
 
+.start_title_box{
+    display: table;
+}
+
+.start_title_image{
+    position: absolute;
+    width: 100%;
+}
+
+.start_title_font{
+    position: absolute;
+    width: 98%;
+    text-align: right;
+    margin-top: 4%;
+    padding-right: 2%;
+    color: #aaaaaa;
+}
+
+.start_title_font_main{
+    font-size: x-large;
+    /* color: #f798b8; */
+}
+
+.start_title_font_sub{
+    font-size: small;
 }
 
 /* スタート画面：イメージ */
