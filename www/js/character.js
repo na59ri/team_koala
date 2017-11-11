@@ -64,8 +64,9 @@ function getCloudData(data){
     var id = data['record']['キャラクタID']['value'];
     var image = data['record']['画像URL']['value'];
     var character = data['record']['キャラクタ名']['value'];
+    var type = data['record']['TypeTable']['value']['0']['value']['タイプ']['value'];
 
-    charaList.push({"id":id,"image":image,"chara":character});
+    charaList.push({"id":id,"image":image,"chara":character,"type":type});
 }
 
 // キャラリスト作成
@@ -78,7 +79,9 @@ function changeCharalist(id,charalist){
         var item = charalist[i];
         tag = tag + '<li class="list-item" onClick=nextClick(this) value="'+item.id+'">'+
         '<div class="list-item__left"><img id="picture" height="80" width="80" src="'+item.image+'" /></div>'+
-        '<div class="list-item__center">'+item.chara+'</div></li>';
+        '<div class="list-item__center">'+
+        '<div>'+item.chara+'</div>'+
+        '<div>'+item.type+'</div></div></li>';
     }
     tagChange(id,tag);
 }
