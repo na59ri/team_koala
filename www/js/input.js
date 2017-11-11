@@ -61,7 +61,11 @@ function getInitialInput(){
     // 年齢の option追加
     var selectAge = '';
     for(var i=startAge;i<=endAge;i++){
-        selectAge=selectAge+'<option value="'+i+'">'+i+'</option>';
+        if(i==25){
+            selectAge=selectAge+'<option value="'+i+'" selected>'+i+'</option>';
+        }else{
+            selectAge=selectAge+'<option value="'+i+'">'+i+'</option>';
+        }
     }
     tagChange(ageId,selectAge);
 }
