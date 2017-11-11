@@ -77,6 +77,10 @@ body.fadeout article{
     margin-bottom:5%;
 }
 
+.button{
+    background-color: #aaaaaa;    
+}
+
 /* インタビュー画面：タイトル */
 .input_title{
     position: relative;
