@@ -87,8 +87,10 @@ function changeAnslist(id,anslist){
         var item = anslist[i];
         // tag = tag + '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.id+'"'+
         // '><div class="list-item__center list-item--longdivider__center">'+item.ans+'</div></li>';
-        tag = tag + '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.answer_no+'"'+
-        '><div class="list-item__center list-item--longdivider__center">'+item.answer+'</div></li>';
+        tag = tag + 
+        '<li class="list-item list-item--longdivider" onClick=nextClick(this) value="'+item.answer_no+'">'+
+        '<ons-ripple></ons-ripple>'+
+        '<div class="list-item__center list-item--longdivider__center">'+item.answer+'</div></li>';
     }
     tagChange(id,tag);
 }
