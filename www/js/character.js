@@ -78,7 +78,7 @@ function changeCharalist(id,charalist){
         }
         var item = charalist[i];
         tag = tag + '<li class="list-item" onClick=nextClick(this) value="'+item.id+'">'+
-        '<ons-ripple color="#fff" background="#999"></ons-ripple>'+
+        '<ons-ripple background="#eeeeee"></ons-ripple>'+
         '<div class="list-item__left"><img id="picture" height="80" width="80" src="'+item.image+'" /></div>'+
         '<div class="list-item__center">'+
         '<div>'+item.chara+'</div>'+
